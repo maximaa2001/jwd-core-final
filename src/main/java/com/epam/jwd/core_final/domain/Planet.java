@@ -7,4 +7,21 @@ package com.epam.jwd.core_final.domain;
  */
 public class Planet extends AbstractBaseEntity{
 
+    private Point location;
+
+    public Planet(Long id, String name, Point location) {
+        super(id, name);
+        this.location = location;
+    }
+
+    public Point getLocation() {
+        return location;
+    }
+
+    @Override
+    public String toString() {
+        return "Planet{" +
+                "location=" + location +
+                '}';
+    }
 }
