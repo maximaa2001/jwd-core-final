@@ -17,7 +17,7 @@ public class SpaceshipServiceImpl implements SpaceshipService {
     private static SpaceshipServiceImpl instance;
     private List<Spaceship> spaceships = new ArrayList<>();
 
-    private SpaceshipServiceImpl(){
+    private SpaceshipServiceImpl() {
 
     }
 
@@ -40,8 +40,8 @@ public class SpaceshipServiceImpl implements SpaceshipService {
 
     @Override
     public Spaceship updateSpaceshipDetails(Spaceship spaceship) {
-        for(Spaceship ship: spaceships){
-            if(ship.getName().equals(spaceship.getName())){
+        for (Spaceship ship : spaceships) {
+            if (ship.getName().equals(spaceship.getName())) {
                 ship.setId(spaceship.getId());
                 ship.setCrew(spaceship.getCrew());
                 ship.setFlightDistance(spaceship.getFlightDistance());
@@ -54,15 +54,15 @@ public class SpaceshipServiceImpl implements SpaceshipService {
 
     @Override
     public void assignSpaceshipOnMission(Spaceship spaceship) throws RuntimeException {
-        if(!spaceship.getReadyForNextMissions()){
+        if (!spaceship.getReadyForNextMissions()) {
             throw new SpaceshipIsNotAssignedException("Spaceship is not assigned");
         }
     }
 
     @Override
     public Spaceship createSpaceship(Spaceship spaceship) throws RuntimeException {
-        for(Spaceship ship: spaceships){
-            if(ship.getName().equals(spaceship.getName())){
+        for (Spaceship ship : spaceships) {
+            if (ship.getName().equals(spaceship.getName())) {
                 throw new SpaceshipIsNotCreatedException("Spaceship already is exist");
             }
         }
@@ -70,47 +70,47 @@ public class SpaceshipServiceImpl implements SpaceshipService {
         return spaceship;
     }
 
-    public static SpaceshipServiceImpl getInstance(){
-        if(instance == null){
+    public static SpaceshipServiceImpl getInstance() {
+        if (instance == null) {
             instance = new SpaceshipServiceImpl();
         }
         return instance;
     }
 
-    private Stream<Spaceship> findByCriteria(Criteria<? extends Spaceship> criteria){
+    private Stream<Spaceship> findByCriteria(Criteria<? extends Spaceship> criteria) {
         return spaceships.stream()
                 .filter(spaceship -> {
-                    if(criteria.getId() == null){
+                    if (criteria.getId() == null) {
                         return true;
-                    }else {
+                    } else {
                         return spaceship.getId().equals(criteria.getId());
                     }
                 })
                 .filter(spaceship -> {
-                    if(criteria.getName() == null){
+                    if (criteria.getName() == null) {
                         return true;
-                    }else {
+                    } else {
                         return spaceship.getName().equals(criteria.getName());
                     }
                 })
                 .filter(spaceship -> {
-                    if(criteria.getCrew() == null){
+                    if (criteria.getCrew() == null) {
                         return true;
-                    }else {
+                    } else {
                         return spaceship.getCrew().equals(criteria.getCrew());
                     }
                 })
                 .filter(spaceship -> {
-                    if(criteria.getFlightDistance() == null){
+                    if (criteria.getFlightDistance() == null) {
                         return true;
-                    }else {
+                    } else {
                         return spaceship.getFlightDistance().equals(criteria.getFlightDistance());
                     }
                 })
                 .filter(spaceship -> {
-                    if(criteria.getReadyForNextMission() == null){
+                    if (criteria.getReadyForNextMission() == null) {
                         return true;
-                    }else {
+                    } else {
                         return spaceship.getReadyForNextMissions().equals(criteria.getReadyForNextMission());
                     }
                 });

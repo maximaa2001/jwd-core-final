@@ -29,8 +29,8 @@ public class FlightMission extends AbstractBaseEntity {
     private Planet fromPlanet;
     private Planet toPlanet;
 
-    public FlightMission(Long id, String name, LocalDateTime startDate,Spaceship assignedSpaceShift, List<CrewMember> assignedCrew,
-                         Planet fromPlanet,Planet toPlanet  ) {
+    public FlightMission(Long id, String name, LocalDateTime startDate, Spaceship assignedSpaceShift, List<CrewMember> assignedCrew,
+                         Planet fromPlanet, Planet toPlanet) {
         super(id, name);
         this.name = name;
         this.startDate = startDate;
@@ -39,7 +39,7 @@ public class FlightMission extends AbstractBaseEntity {
         this.fromPlanet = fromPlanet;
         this.toPlanet = toPlanet;
         missionResult = MissionResult.PLANNED;
-        if(fromPlanet != null && toPlanet != null) {
+        if (fromPlanet != null && toPlanet != null) {
             distance = (long) Math.sqrt(Math.pow(toPlanet.getLocation().getX() - fromPlanet.getLocation().getX(), 2) +
                     Math.pow(toPlanet.getLocation().getY() - fromPlanet.getLocation().getY(), 2));
             endDate = startDate.plusSeconds(distance);
@@ -56,13 +56,13 @@ public class FlightMission extends AbstractBaseEntity {
     }
 
     public void setEndDate() {
-        if(startDate != null && distance != null){
+        if (startDate != null && distance != null) {
             endDate = startDate.plusSeconds(distance);
         }
     }
 
     public void setDistance() {
-        if(fromPlanet != null && toPlanet != null) {
+        if (fromPlanet != null && toPlanet != null) {
             distance = (long) Math.sqrt(Math.pow(toPlanet.getLocation().getX() - fromPlanet.getLocation().getX(), 2) +
                     Math.pow(toPlanet.getLocation().getY() - fromPlanet.getLocation().getY(), 2));
         }

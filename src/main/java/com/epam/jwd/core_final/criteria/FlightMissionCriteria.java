@@ -33,6 +33,7 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
         this.fromPlanet = fromPlanet;
         this.toPlanet = toPlanet;
     }
+
     @Override
     public String getName() {
         return name;
@@ -71,7 +72,6 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
     }
 
 
-
     @Override
     public String toString() {
         return "FlightMissionCriteria{" +
@@ -83,13 +83,12 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
                 ", assignedCrew=" + assignedCrew +
                 ", missionResult=" + missionResult +
                 ", fromPlanet=" + fromPlanet +
-                ", toPlanet=" + toPlanet + "  "+ getId() + "  " + getName()+
+                ", toPlanet=" + toPlanet + "  " + getId() + "  " + getName() +
                 '}';
     }
 
 
-
-    public static class FlightMissionCriteriaBuilder extends CriteriaBuilder<FlightMission>{
+    public static class FlightMissionCriteriaBuilder extends CriteriaBuilder<FlightMission> {
         private String name;
         private LocalDateTime startDate;
         private LocalDateTime endDate;
@@ -109,13 +108,13 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
         }
 
         public void setEndDate() {
-            if(startDate != null && distance != null){
+            if (startDate != null && distance != null) {
                 endDate = startDate.plusSeconds(distance);
             }
         }
 
         public void setDistance() {
-            if(fromPlanet != null && toPlanet != null) {
+            if (fromPlanet != null && toPlanet != null) {
                 distance = (long) Math.sqrt(Math.pow(toPlanet.getLocation().getX() - fromPlanet.getLocation().getX(), 2) +
                         Math.pow(toPlanet.getLocation().getY() - fromPlanet.getLocation().getY(), 2));
             }
@@ -141,9 +140,9 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
             this.toPlanet = toPlanet;
         }
 
-        public FlightMissionCriteria build(){
-            return new FlightMissionCriteria(id,name,startDate,endDate,distance,assignedSpaceShift,assignedCrew,missionResult,
-                    fromPlanet,toPlanet);
+        public FlightMissionCriteria build() {
+            return new FlightMissionCriteria(id, name, startDate, endDate, distance, assignedSpaceShift, assignedCrew, missionResult,
+                    fromPlanet, toPlanet);
         }
 
     }

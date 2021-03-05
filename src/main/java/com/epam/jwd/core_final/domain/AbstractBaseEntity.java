@@ -11,7 +11,7 @@ public abstract class AbstractBaseEntity implements BaseEntity {
     private Long id;
     private String name;
 
-    public AbstractBaseEntity(Long id, String name){
+    public AbstractBaseEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }

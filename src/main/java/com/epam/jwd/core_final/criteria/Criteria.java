@@ -40,6 +40,7 @@ public abstract class Criteria<T extends BaseEntity> {
     public Boolean getReadyForNextMission() {
         return null;
     }
+
     public LocalDateTime getStartDate() {
         return null;
     }
@@ -81,30 +82,29 @@ public abstract class Criteria<T extends BaseEntity> {
     }
 
 
-
-
-    public static class CriteriaBuilder<T extends BaseEntity>{
+    public static class CriteriaBuilder<T extends BaseEntity> {
         protected Long id;
         protected String name;
 
-        public void setId(Long id){
+        public void setId(Long id) {
             this.id = id;
         }
-        public void setName(String name){
+
+        public void setName(String name) {
             this.name = name;
         }
 
-        public CrewMemberCriteria buildCrewMemberCriteria(){
+        public CrewMemberCriteria buildCrewMemberCriteria() {
             return new CrewMemberCriteria(id, null, name, null, null);
         }
 
-        public FlightMissionCriteria buildFlightMissionCriteria(){
-            return new FlightMissionCriteria(id,name,null,null,null,null,null,
-                    null, null,null);
+        public FlightMissionCriteria buildFlightMissionCriteria() {
+            return new FlightMissionCriteria(id, name, null, null, null, null, null,
+                    null, null, null);
         }
 
-        public SpaceshipCriteria buildSpaceshipCriteria(){
-            return new SpaceshipCriteria(id,name,null,null,null);
+        public SpaceshipCriteria buildSpaceshipCriteria() {
+            return new SpaceshipCriteria(id, name, null, null, null);
         }
     }
 }

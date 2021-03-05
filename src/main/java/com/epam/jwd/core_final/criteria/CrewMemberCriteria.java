@@ -13,14 +13,12 @@ public class CrewMemberCriteria extends Criteria<CrewMember> {
     private Rank rank;
     private Boolean isReadyForNextMission;
 
-    public CrewMemberCriteria(Long id,Role role, String name, Rank rank, Boolean isReadyForNextMission) {
+    public CrewMemberCriteria(Long id, Role role, String name, Rank rank, Boolean isReadyForNextMission) {
         super(id, name);
         this.role = role;
         this.rank = rank;
         this.isReadyForNextMission = isReadyForNextMission;
     }
-
-
 
     public Role getRole() {
         return role;
@@ -39,16 +37,16 @@ public class CrewMemberCriteria extends Criteria<CrewMember> {
         return "CrewMemberCriteria{" +
                 "role=" + role +
                 ", rank=" + rank +
-                ", isReadyForNextMission=" + isReadyForNextMission +"  "+ getId() + "  " + getName()+
+                ", isReadyForNextMission=" + isReadyForNextMission + "  " + getId() + "  " + getName() +
                 '}';
     }
 
-    public static class CrewMemberCriteriaBuilder extends CriteriaBuilder<CrewMember>{
+    public static class CrewMemberCriteriaBuilder extends CriteriaBuilder<CrewMember> {
         private Role role;
         private Rank rank;
         private boolean isReadyForNextMission;
 
-        public void setRole(Role role){
+        public void setRole(Role role) {
             this.role = role;
         }
 
@@ -60,8 +58,8 @@ public class CrewMemberCriteria extends Criteria<CrewMember> {
             isReadyForNextMission = readyForNextMission;
         }
 
-        public CrewMemberCriteria build(){
-            return new CrewMemberCriteria(id,role,name,rank,isReadyForNextMission);
+        public CrewMemberCriteria build() {
+            return new CrewMemberCriteria(id, role, name, rank, isReadyForNextMission);
         }
 
     }

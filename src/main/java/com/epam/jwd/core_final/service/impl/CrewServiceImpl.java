@@ -21,11 +21,12 @@ public class CrewServiceImpl implements CrewService {
     private static CrewServiceImpl instance;
     private List<CrewMember> crewMembers = new ArrayList<>();
 
-    private CrewServiceImpl()throws IOException{
+    private CrewServiceImpl() throws IOException {
 
     }
+
     @Override
-    public List<CrewMember> findAllCrewMembers()  {
+    public List<CrewMember> findAllCrewMembers() {
         return crewMembers;
     }
 
@@ -43,8 +44,8 @@ public class CrewServiceImpl implements CrewService {
 
     @Override
     public CrewMember updateCrewMemberDetails(CrewMember crewMember) {
-        for(CrewMember member: crewMembers){
-            if(member.getName().equals(crewMember.getName())){
+        for (CrewMember member : crewMembers) {
+            if (member.getName().equals(crewMember.getName())) {
                 member.setId(crewMember.getId());
                 member.setRole(crewMember.getRole());
                 member.setRank(crewMember.getRank());
@@ -57,15 +58,15 @@ public class CrewServiceImpl implements CrewService {
 
     @Override
     public void assignCrewMemberOnMission(CrewMember crewMember) throws RuntimeException {
-        if(!crewMember.getReadyForNextMission()){
+        if (!crewMember.getReadyForNextMission()) {
             throw new CrewMemberIsNotAssignedException("Member is not assigned");
         }
     }
 
     @Override
     public CrewMember createCrewMember(CrewMember crewMember) throws RuntimeException {
-        for(CrewMember member: crewMembers){
-            if(member.getName().equals(crewMember.getName())){
+        for (CrewMember member : crewMembers) {
+            if (member.getName().equals(crewMember.getName())) {
                 throw new CrewMemberIsNotCreatedException("Member already is exist");
             }
         }
@@ -74,46 +75,46 @@ public class CrewServiceImpl implements CrewService {
     }
 
     public static CrewServiceImpl getInstance() throws IOException {
-        if(instance == null){
+        if (instance == null) {
             instance = new CrewServiceImpl();
         }
         return instance;
     }
 
-    private Stream<CrewMember> findByCriteria(Criteria<? extends CrewMember> criteria){
+    private Stream<CrewMember> findByCriteria(Criteria<? extends CrewMember> criteria) {
         return crewMembers.stream()
-                .filter(member ->{
-                    if(criteria.getId() == null){
+                .filter(member -> {
+                    if (criteria.getId() == null) {
                         return true;
-                    }else {
+                    } else {
                         return member.getId().equals(criteria.getId());
                     }
                 })
-                .filter(member ->{
-                    if(criteria.getName() == null){
+                .filter(member -> {
+                    if (criteria.getName() == null) {
                         return true;
-                    }else {
+                    } else {
                         return member.getName().equals(criteria.getName());
                     }
                 })
-                .filter(member ->{
-                    if(criteria.getRole() == null){
+                .filter(member -> {
+                    if (criteria.getRole() == null) {
                         return true;
-                    }else {
+                    } else {
                         return member.getRole() == criteria.getRole();
                     }
                 })
-                .filter(member ->{
-                    if(criteria.getRank() == null){
+                .filter(member -> {
+                    if (criteria.getRank() == null) {
                         return true;
-                    }else {
+                    } else {
                         return member.getRank() == criteria.getRank();
                     }
                 })
-                .filter(member ->{
-                    if(criteria.getReadyForNextMission() == null){
+                .filter(member -> {
+                    if (criteria.getReadyForNextMission() == null) {
                         return true;
-                    }else {
+                    } else {
                         return member.getReadyForNextMission() == criteria.getReadyForNextMission();
                     }
                 });

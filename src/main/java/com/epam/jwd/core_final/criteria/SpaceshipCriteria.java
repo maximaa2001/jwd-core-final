@@ -11,7 +11,7 @@ import java.util.Map;
  * Should be a builder for {@link Spaceship} fields
  */
 public class SpaceshipCriteria extends Criteria<Spaceship> {
-    private Map<Role,Short> crew;
+    private Map<Role, Short> crew;
     private Long flightDistance;
     private Boolean isReadyForNextMissions;
 
@@ -22,8 +22,8 @@ public class SpaceshipCriteria extends Criteria<Spaceship> {
         this.isReadyForNextMissions = isReadyForNextMissions;
     }
 
-    public static class SpaceshipCriteriaBuilder extends CriteriaBuilder<Spaceship>{
-        private Map<Role,Short> crew;
+    public static class SpaceshipCriteriaBuilder extends CriteriaBuilder<Spaceship> {
+        private Map<Role, Short> crew;
         private Long flightDistance;
         private boolean isReadyForNextMissions;
 
@@ -39,8 +39,8 @@ public class SpaceshipCriteria extends Criteria<Spaceship> {
             isReadyForNextMissions = readyForNextMissions;
         }
 
-        public SpaceshipCriteria build(){
-            return new SpaceshipCriteria(id,name,crew,flightDistance,isReadyForNextMissions);
+        public SpaceshipCriteria build() {
+            return new SpaceshipCriteria(id, name, crew, flightDistance, isReadyForNextMissions);
         }
     }
 }
